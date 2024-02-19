@@ -23,6 +23,9 @@ class Media
     #[ORM\Column(type: Types::TEXT)]
     private ?string $url = null;
 
+    #[ORM\ManyToOne(inversedBy: 'media_id')]
+    private ?Trick $trick = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +63,18 @@ class Media
     public function setUrl(string $url): static
     {
         $this->url = $url;
+
+        return $this;
+    }
+
+    public function getTrick(): ?Trick
+    {
+        return $this->trick;
+    }
+
+    public function setTrick(?Trick $trick): static
+    {
+        $this->trick = $trick;
 
         return $this;
     }
